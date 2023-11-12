@@ -1,0 +1,10 @@
+<h1>Tasks</h1>
+<ul>
+{% for task in object_list %}
+    {% comment %} <li>{{task.user}}</li> {% endcomment %}
+{% if task.complete == True %}
+    <strike>{{task.title}}</strike>
+{% else %}
+    <li>{{ task }}</li>
+{% endif %}
+{% endfor %}

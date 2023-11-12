@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .forms import SignUpForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
-# Create your views here.
 from django.views.generic.edit import CreateView
 
 class SignUpView(CreateView):
@@ -19,3 +18,7 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy("home")
+    
+
+
+    
