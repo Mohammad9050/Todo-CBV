@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -17,7 +18,7 @@ def first(request):
     return HttpResponse('Home page')
 
 
-class TaskList(ListView):
+class TaskList(LoginRequiredMixin,ListView):
     model = Task
     template_name = "home.html"
 
@@ -26,9 +27,9 @@ class TaskList(ListView):
     
 
 
-class TaskComplete(View):
+class TaskComplete(LoginRequiredMixin, View):
     model = Task
-    success_url = reverse_lazy("list")
+    success_url = reverse_lazy("home")
 
     def get(self, request, *args, **kwargs):
         object = self.model.objects.get(id=kwargs.get("pk"))
@@ -37,9 +38,9 @@ class TaskComplete(View):
         return redirect(self.success_url)
 
 
-class TaskDelete(View):
+class TaskDelete(LoginRequiredMixin, View):
     model = Task
-    success_url = reverse_lazy("list")
+    success_url = reverse_lazy("home")
 
     def get(self, request, *args, **kwargs):
         object = self.model.objects.get(id=kwargs.get("pk"))
@@ -48,29 +49,16 @@ class TaskDelete(View):
     
 
 
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ["title"]
     #template_name = 'test2.html'
-    success_url = reverse_lazy("list")
+    success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TaskCreate, self).form_valid(form)
     
-# def create_view(request):
-#     if request.method == 'POST':
-#         form = TaskForm(request.POST)
-#         if form.is_valid():
-#             form.save(commit=False)
-#             form.instance.user = request.user
-#             form.save()
-#             return HttpResponseRedirect(reverse('list'))
-#     else:
-#         form = TaskForm()
-#     return render(request, 'create.html', {'form':form})
-
-
 
 
 

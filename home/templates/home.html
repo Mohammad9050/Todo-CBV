@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <style>
+        header {
+            background-color: #333; /* Background color for the header */
+            color: #fff; /* Text color for the header */
+            padding: 10px 0; /* Padding at the top and bottom of the header */
+            text-align: center; /* Center-align the content */
+        }
+
+        /* Style for the logo */
+        .logo {
+            font-size: 24px; /* Font size for the logo */
+            font-weight: bold; /* Bold font for the logo */
+        }
+
+        /* Style for the navigation menu */
+        nav {
+            margin-top: 10px; /* Spacing between the logo and the navigation menu */
+        }
+
+        nav a {
+            color: #fff; /* Text color for the links */
+            text-decoration: none; /* Remove underline from links */
+            margin: 0 10px; /* Spacing between the links */
+        }
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -90,6 +113,12 @@
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">Todo App</div>
+        <nav>
+            <a href="{% url "logout" %}">logout</a>
+        </nav>
+    </header> 
 
     <div class="container">
         <h1>To-Do List</h1>
