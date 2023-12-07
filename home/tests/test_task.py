@@ -22,32 +22,32 @@ class TestApi:
         response = client_api.get(url)
         assert response.status_code == 401
 
-    # def test_api_list_get_200_status(self, client_api, common_user):
-    #     url = reverse("api:tasks-list")
-    #     client_api.force_login(user= common_user)
-    #     response = client_api.get(url)
-    #     assert response.status_code == 200
+    def test_api_list_get_200_status(self, client_api, common_user):
+        url = reverse("api:tasks-list")
+        client_api.force_login(user= common_user)
+        response = client_api.get(url)
+        assert response.status_code == 200
         
-    # def test_api_task_post_401_status(self, client_api, common_user):
+    def test_api_task_post_401_status(self, client_api, common_user):
         
-    #     url = reverse("api:tasks-list")
-    #     data = {
-    #         'user': common_user,
-    #         'title': 'test'
-    #     } 
-    #     response = client_api.post(url, data)
-    #     assert response.status_code == 401
+        url = reverse("api:tasks-list")
+        data = {
+            'user': common_user,
+            'title': 'test'
+        } 
+        response = client_api.post(url, data)
+        assert response.status_code == 401
 
-    # def test_api_task_post_201_status(self, client_api, common_user):
+    def test_api_task_post_201_status(self, client_api, common_user):
 
-    #     url = reverse("api:tasks-list")
-    #     client_api.force_login(user= common_user)
-    #     data = {
-    #         'user': common_user,
-    #         'title': 'test'
-    #     } 
-    #     response =client_api.post(url, data=data)
+        url = reverse("api:tasks-list")
+        client_api.force_login(user= common_user)
+        data = {
+            'user': common_user,
+            'title': 'test'
+        } 
+        response =client_api.post(url, data=data)
 
-    #     assert response.status_code == 201
+        assert response.status_code == 201
 
 
