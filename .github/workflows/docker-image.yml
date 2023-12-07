@@ -2,11 +2,11 @@ name: Docker Image CI
 
 on:
   push:
-<<<<<<< HEAD
+
     branches: [ "dev" ]
   pull_request:
     branches: [ "dev" ]
-=======
+
 
 jobs:
 
@@ -16,9 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-<<<<<<< HEAD
+
     - name: Setup Docker compose
-=======
+
   
       run: docker compose up -d
     - name: Run Tests
